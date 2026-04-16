@@ -20,3 +20,8 @@ html {
   color: var(--color-text);
   scroll-behavior: smooth;
 }
+
+/* Compensación del header sticky en navegación por anclas */
+section[id] {
+  scroll-margin-top: 5rem;
+}

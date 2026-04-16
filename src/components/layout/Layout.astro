@@ -2,6 +2,7 @@
 import { ClientRouter } from 'astro:transitions';
 import { Font } from 'astro:assets';
 import SEO from '../seo/SEO.astro';
+import Header from './Header.astro';
 import '../../styles/global.css';
 
 interface Props {
@@ -22,6 +23,7 @@ const { title, description, ogImage } = Astro.props;
     <ClientRouter />
   </head>
   <body>
+    <Header />
     <slot />
   </body>
 </html>
