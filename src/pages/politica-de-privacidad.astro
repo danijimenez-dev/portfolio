@@ -1,0 +1,40 @@
+---
+import Layout from '../components/layout/Layout.astro';
+---
+
+<Layout
+  title="Política de privacidad - Daniel Jiménez"
+  description="Política de privacidad del sitio web danijimenez.dev"
+>
+  <main class="legal-page">
+    <div class="legal-content">
+      <h1>Política de privacidad</h1>
+      <p>Contenido en preparación. Esta página se completará próximamente.</p>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .legal-page {
+    padding: 6rem 1.5rem 4rem;
+  }
+
+  .legal-content {
+    max-width: 48rem;
+    margin-inline: auto;
+  }
+
+  h1 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 1.5rem;
+  }
+
+  p {
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: color-mix(in srgb, var(--color-text) 80%, transparent);
+    margin: 0;
+  }
+</style>
