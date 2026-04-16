@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  /* Design tokens — no modificar sin actualizar CLAUDE.md */
+  --color-bg: #f5f5f0;
+  --color-text: #1a1a2e;
+  --color-accent: #4a6fa5;
+  --color-card: #e8eef7;
+  --color-border: color-mix(in srgb, var(--color-accent) 20%, transparent);
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+}
+
+html {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  scroll-behavior: smooth;
+}

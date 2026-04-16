@@ -20,8 +20,17 @@ Portfolio personal de Daniel Jiménez, ingeniero informático de último año (I
 npm run dev        # servidor de desarrollo
 npm run build      # build de producción
 npm run preview    # previsualizar el build
-npm run astro check # verificación de tipos
+npm run astro check # verificación de tipos (requiere @astrojs/check, ya instalado)
 ```
+
+## Pendientes de configurar
+
+| TODO | Descripción |
+|---|---|
+| `FORMSPREE_ENDPOINT` | Endpoint del formulario de contacto principal. Reemplazar en `src/components/sections/Contact.astro` |
+| `FORMSPREE_IA_ENDPOINT` | Endpoint separado para la lista de espera de Servicios de IA. Reemplazar en `src/components/sections/Services.astro` |
+| WhatsApp | Número pendiente de añadir. Comentario HTML en `src/components/layout/Footer.astro` |
+| LinkedIn | URL pendiente. Comentario HTML en `src/components/layout/Footer.astro` |
 
 ## Design system (tokens inviolables)
 
