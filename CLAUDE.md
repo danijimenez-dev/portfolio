@@ -31,6 +31,7 @@ npm run astro check # verificación de tipos (requiere @astrojs/check, ya instal
 | `FORMSPREE_IA_ENDPOINT` | Endpoint separado para la lista de espera de Servicios de IA. Reemplazar en `src/components/sections/Services.astro` |
 | WhatsApp | Número pendiente de añadir. Comentario HTML en `src/components/layout/Footer.astro` |
 | LinkedIn | URL pendiente. Comentario HTML en `src/components/layout/Footer.astro` |
+| NIF en páginas legales | Reemplazar `[DATO_PENDIENTE]` en `src/pages/aviso-legal.astro` y `src/pages/politica-de-privacidad.astro` cuando te des de alta como autónomo |
 
 ## Design system (tokens inviolables)
 
