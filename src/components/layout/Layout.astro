@@ -2,6 +2,7 @@
 import { ClientRouter } from 'astro:transitions';
 import { Font } from 'astro:assets';
 import SEO from '../seo/SEO.astro';
+import SchemaLocalBusiness from '../seo/SchemaLocalBusiness.astro';
 import Header from './Header.astro';
 import '../../styles/global.css';
 
@@ -9,9 +10,10 @@ interface Props {
   title: string;
   description: string;
   ogImage?: string;
+  isHome?: boolean;
 }
 
-const { title, description, ogImage } = Astro.props;
+const { title, description, ogImage, isHome = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -19,11 +21,43 @@ const { title, description, ogImage } = Astro.props;
   <head>
     <Font cssVariable="--font-inter" preload />
     <SEO title={title} description={description} ogImage={ogImage} />
+    {isHome && <SchemaLocalBusiness />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <ClientRouter />
   </head>
   <body>
+    <a href="#main" class="skip-link">Saltar al contenido principal</a>
     <Header />
     <slot />
   </body>
 </html>
+
+<style is:global>
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .skip-link:focus {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 100;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    background-color: var(--color-accent);
+    color: #ffffff;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+  }
+</style>

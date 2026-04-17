@@ -1,0 +1,36 @@
+---
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Daniel Jiménez - Desarrollo Web",
+  "url": "https://danijimenez.dev",
+  "email": "hola@danijimenez.dev",
+  "priceRange": "€€",
+  "description": "Desarrollo web profesional para negocios locales en Segovia. Páginas rápidas, modernas y optimizadas para Google.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Segovia",
+    "addressRegion": "Castilla y León",
+    "addressCountry": "ES"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.9429,
+    "longitude": -4.1088
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Segovia"
+  },
+  "founder": {
+    "@type": "Person",
+    "name": "Daniel Jiménez",
+    "alumniOf": "Universidad Complutense de Madrid"
+  },
+  "sameAs": [
+    "https://github.com/danijimenez-dev"
+  ]
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
