@@ -1,0 +1,137 @@
+---
+import ServiceCard from '../ui/ServiceCard.astro';
+
+const services = [
+  {
+    icon: 'code',
+    title: 'Desarrollo web',
+    description:
+      'Diseño y desarrollo tu web desde cero con tecnología moderna. Rápida en móvil, fácil de encontrar en Google y hecha a medida de tu negocio.',
+    price: 'desde 300€',
+    isComingSoon: false,
+  },
+  {
+    icon: 'wrench',
+    title: 'Mantenimiento mensual',
+    description:
+      'Me encargo de que tu web siga funcionando: actualizaciones, cambios de contenido, dominio y soporte cuando lo necesites.',
+    price: 'desde 50€/mes',
+    isComingSoon: false,
+  },
+  {
+    icon: 'refresh',
+    title: 'Rediseño web',
+    description:
+      '¿Tu web actual está desactualizada o va lenta? La rehago manteniendo tu identidad pero con estándares modernos.',
+    price: 'desde 200€',
+    isComingSoon: false,
+  },
+  {
+    icon: 'sparkles',
+    title: 'Servicios de IA',
+    description:
+      'Chatbots, automatizaciones y asistentes inteligentes adaptados a tu negocio. En preparación para finales de 2026.',
+    price: '',
+    isComingSoon: true,
+  },
+];
+---
+
+<section id="servicios" class="services-section">
+  <div class="services-inner">
+
+    <!-- Encabezado de sección -->
+    <header class="services-header">
+      <p class="eyebrow">Servicios</p>
+      <h2 class="section-title">Todo lo que tu web necesita, en un solo sitio.</h2>
+      <p class="section-subtitle">
+        Desde el diseño hasta el mantenimiento. Me encargo de la parte técnica
+        para que tú te concentres en tu negocio.
+      </p>
+    </header>
+
+    <!-- Grid de tarjetas -->
+    <div class="services-grid" role="list">
+      {services.map((service) => (
+        <div role="listitem">
+          <ServiceCard
+            icon={service.icon}
+            title={service.title}
+            description={service.description}
+            price={service.price}
+            isComingSoon={service.isComingSoon}
+          />
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .services-section {
+    padding: 5rem 1.5rem;
+    background-color: var(--color-bg);
+  }
+
+  @media (max-width: 640px) {
+    .services-section {
+      padding: 4rem 1.25rem;
+    }
+  }
+
+  .services-inner {
+    max-width: 72rem;
+    margin-inline: auto;
+  }
+
+  /* ── Encabezado ──────────────────────────────────── */
+  .services-header {
+    margin-bottom: 3rem;
+  }
+
+  .eyebrow {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
+    margin: 0 0 0.75rem 0;
+  }
+
+  .section-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+  }
+
+  .section-subtitle {
+    max-width: 600px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: color-mix(in srgb, var(--color-text) 75%, transparent);
+    margin: 0;
+  }
+
+  /* ── Grid ────────────────────────────────────────── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* El div role="listitem" ocupa el 100% para que la tarjeta
+     pueda usar height: 100% y las filas queden equilibradas */
+  .services-grid > [role="listitem"] {
+    display: flex;
+    flex-direction: column;
+  }
+</style>
