@@ -1,0 +1,567 @@
+---
+---
+
+<section id="contacto" class="contact-section">
+  <div class="contact-inner">
+
+    <!-- Encabezado de sección -->
+    <header class="contact-header">
+      <p class="eyebrow">Contacto</p>
+      <h2 class="section-title">¿Tienes un proyecto en mente?</h2>
+      <p class="section-subtitle">
+        Cuéntame qué necesitas. Te respondo en menos de 24 horas con una
+        propuesta clara.
+      </p>
+    </header>
+
+    <!-- Layout dos columnas -->
+    <div class="contact-grid">
+
+      <!-- Columna izquierda: información de contacto -->
+      <aside class="contact-info" aria-label="Información de contacto">
+
+        <div class="info-blocks">
+
+          <div class="info-block">
+            <span class="info-label">Email</span>
+            <a href="mailto:hola@danijimenez.dev" class="info-value info-link">
+              hola@danijimenez.dev
+            </a>
+          </div>
+
+          <div class="info-block">
+            <span class="info-label">Ubicación</span>
+            <span class="info-value">Segovia, España</span>
+          </div>
+
+          <div class="info-block">
+            <span class="info-label">Tiempo de respuesta</span>
+            <span class="info-value">Menos de 24 horas</span>
+          </div>
+
+        </div>
+
+        <hr class="info-divider" aria-hidden="true" />
+
+        <p class="info-closing">
+          Prefiero una primera conversación sin compromiso. Así puedo entender
+          bien tu proyecto antes de proponer nada.
+        </p>
+
+      </aside>
+
+      <!-- Columna derecha: formulario -->
+      <div class="contact-form-wrapper">
+
+        <form
+          id="contact-form"
+          method="POST"
+          action="FORMSPREE_ENDPOINT"
+          novalidate
+        >
+
+          <!-- Nombre -->
+          <div class="field-group">
+            <label for="nombre" class="field-label">Nombre</label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              required
+              autocomplete="name"
+              minlength="2"
+              class="field-input"
+            />
+            <div id="error-nombre" class="form-error" aria-live="polite"></div>
+          </div>
+
+          <!-- Email -->
+          <div class="field-group">
+            <label for="email" class="field-label">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              autocomplete="email"
+              class="field-input"
+            />
+            <div id="error-email" class="form-error" aria-live="polite"></div>
+          </div>
+
+          <!-- Tipo de proyecto -->
+          <div class="field-group">
+            <label for="tipo" class="field-label">Tipo de proyecto</label>
+            <select id="tipo" name="tipo" required class="field-input field-select">
+              <option value="" disabled selected>Selecciona una opción</option>
+              <option value="Web nueva">Web nueva</option>
+              <option value="Rediseño">Rediseño</option>
+              <option value="Mantenimiento">Mantenimiento</option>
+              <option value="Servicios de IA">Servicios de IA</option>
+              <option value="Otro">Otro</option>
+            </select>
+            <div id="error-tipo" class="form-error" aria-live="polite"></div>
+          </div>
+
+          <!-- Mensaje -->
+          <div class="field-group">
+            <label for="mensaje" class="field-label">Mensaje</label>
+            <textarea
+              id="mensaje"
+              name="mensaje"
+              required
+              minlength="20"
+              rows="5"
+              class="field-input field-textarea"
+            ></textarea>
+            <div id="error-mensaje" class="form-error" aria-live="polite"></div>
+          </div>
+
+          <!-- Honeypot anti-spam -->
+          <input
+            type="text"
+            name="_gotcha"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+            style="position:absolute;left:-9999px;height:0;overflow:hidden;"
+          />
+
+          <!-- Botón submit -->
+          <button type="submit" id="submit-btn" class="submit-btn">
+            Enviar mensaje
+          </button>
+
+        </form>
+
+        <!-- Estado de éxito -->
+        <div id="form-success" role="status" aria-live="polite" class="state-box hidden">
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#22c55e"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            class="success-icon"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="9 12 11 14 15 10" />
+          </svg>
+          <p class="success-title">¡Mensaje enviado!</p>
+          <p class="success-sub">Te responderé en menos de 24 horas.</p>
+        </div>
+
+        <!-- Estado de error global -->
+        <div id="form-error-global" role="alert" aria-live="assertive" class="state-box error-box hidden">
+          <p class="error-global-text">
+            Ha ocurrido un error al enviar el mensaje.
+          </p>
+          <p class="error-global-sub">
+            Intenta de nuevo o escríbeme directamente a
+            <a href="mailto:hola@danijimenez.dev" class="error-link">
+              hola@danijimenez.dev
+            </a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .contact-section {
+    padding: 5rem 1.5rem;
+    background-color: var(--color-bg);
+  }
+
+  @media (max-width: 640px) {
+    .contact-section {
+      padding: 4rem 1.25rem;
+    }
+  }
+
+  .contact-inner {
+    max-width: 72rem;
+    margin-inline: auto;
+  }
+
+  /* ── Encabezado ──────────────────────────────────── */
+  .contact-header {
+    margin-bottom: 3rem;
+  }
+
+  .eyebrow {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
+    margin: 0 0 0.75rem 0;
+  }
+
+  .section-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+  }
+
+  .section-subtitle {
+    max-width: 600px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: color-mix(in srgb, var(--color-text) 75%, transparent);
+    margin: 0;
+  }
+
+  /* ── Grid dos columnas ───────────────────────────── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 2fr 3fr;
+      gap: 3rem;
+      align-items: start;
+    }
+  }
+
+  /* ── Columna de información ──────────────────────── */
+  .info-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .info-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .info-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: color-mix(in srgb, var(--color-text) 50%, transparent);
+  }
+
+  .info-value {
+    font-size: 1rem;
+    color: var(--color-text);
+  }
+
+  .info-link {
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+
+  .info-link:hover {
+    color: var(--color-accent);
+  }
+
+  .info-link:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .info-divider {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 1.5rem 0;
+  }
+
+  .info-closing {
+    font-size: 0.9rem;
+    color: color-mix(in srgb, var(--color-text) 70%, transparent);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── Formulario ──────────────────────────────────── */
+  #contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .field-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .field-label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text);
+    margin-bottom: 0.4rem;
+  }
+
+  .field-input {
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--color-text);
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+    box-sizing: border-box;
+  }
+
+  .field-input:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-color: var(--color-accent);
+  }
+
+  .field-input[aria-invalid="true"] {
+    border-color: #dc3545;
+  }
+
+  .field-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%231a1a2e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.875rem center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+  }
+
+  .field-textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-error {
+    font-size: 0.8rem;
+    color: #dc3545;
+    margin-top: 0.3rem;
+    min-height: 1.2rem;
+  }
+
+  /* ── Botón submit ────────────────────────────────── */
+  .submit-btn {
+    background-color: var(--color-accent);
+    color: #ffffff;
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    min-width: 200px;
+    transition: background-color 200ms ease, transform 200ms ease;
+    align-self: flex-start;
+  }
+
+  @media (max-width: 640px) {
+    .submit-btn {
+      width: 100%;
+      align-self: stretch;
+    }
+  }
+
+  .submit-btn:hover:not(:disabled) {
+    background-color: color-mix(in srgb, var(--color-accent) 88%, #000000);
+  }
+
+  .submit-btn:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  /* ── Contenedores de estado ──────────────────────── */
+  .state-box {
+    padding: 3rem;
+    text-align: center;
+    border-radius: var(--radius-md);
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  /* Éxito */
+  .success-icon {
+    display: block;
+    margin: 0 auto 1rem;
+  }
+
+  .success-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 0.5rem 0;
+  }
+
+  .success-sub {
+    font-size: 0.95rem;
+    color: color-mix(in srgb, var(--color-text) 70%, transparent);
+    margin: 0;
+  }
+
+  /* Error global */
+  .error-box {
+    background-color: rgba(220, 53, 69, 0.05);
+    text-align: left;
+    padding: 1.5rem;
+  }
+
+  .error-global-text {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #dc3545;
+    margin: 0 0 0.4rem 0;
+  }
+
+  .error-global-sub {
+    font-size: 0.9rem;
+    color: color-mix(in srgb, var(--color-text) 75%, transparent);
+    margin: 0;
+  }
+
+  .error-link {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  .error-link:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+  const successBox = document.getElementById('form-success') as HTMLElement | null;
+  const errorBox = document.getElementById('form-error-global') as HTMLElement | null;
+
+  if (!form || !submitBtn || !successBox || !errorBox) {
+    // Salida segura si el DOM no está disponible (e.g. SSR sin hidratación)
+    throw new Error('Contact form elements not found');
+  }
+
+  const fields = Array.from(
+    form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
+      '[id="nombre"], [id="email"], [id="tipo"], [id="mensaje"]'
+    )
+  );
+
+  // ── Validación individual ────────────────────────────────────────────
+  function validateField(
+    field: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+  ): boolean {
+    const errorEl = document.getElementById(`error-${field.id}`);
+    let message = '';
+
+    if (field.required && !field.value.trim()) {
+      message =
+        field.tagName === 'SELECT'
+          ? 'Selecciona una opción'
+          : 'Este campo es obligatorio';
+    } else if (
+      field instanceof HTMLInputElement &&
+      field.type === 'email' &&
+      field.value.trim() &&
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value.trim())
+    ) {
+      message = 'Introduce un email válido';
+    } else if (
+      !(field instanceof HTMLSelectElement) &&
+      field.minLength > 0 &&
+      field.value.trim().length < field.minLength &&
+      field.value.trim().length > 0
+    ) {
+      message = `Mínimo ${field.minLength} caracteres`;
+    }
+
+    if (errorEl) {
+      errorEl.textContent = message;
+    }
+
+    if (message) {
+      field.setAttribute('aria-invalid', 'true');
+      field.setAttribute('aria-describedby', `error-${field.id}`);
+    } else {
+      field.removeAttribute('aria-invalid');
+      field.removeAttribute('aria-describedby');
+    }
+
+    return message === '';
+  }
+
+  // ── Validación en blur ───────────────────────────────────────────────
+  fields.forEach((field) => {
+    field.addEventListener('blur', () => validateField(field));
+  });
+
+  // ── Envío del formulario ─────────────────────────────────────────────
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    // Validar todos los campos
+    const results = fields.map((field) => validateField(field));
+    const firstInvalid = fields.find((_, i) => !results[i]);
+
+    if (firstInvalid) {
+      firstInvalid.focus();
+      return;
+    }
+
+    // Deshabilitar botón durante el envío
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando...';
+    errorBox.classList.add('hidden');
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15_000);
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(form),
+        signal: controller.signal,
+      });
+
+      clearTimeout(timeoutId);
+
+      if (response.ok) {
+        form.style.display = 'none';
+        successBox.classList.remove('hidden');
+        successBox.focus();
+        form.reset();
+      } else {
+        throw new Error(`Response status: ${response.status}`);
+      }
+    } catch {
+      clearTimeout(timeoutId);
+      errorBox.classList.remove('hidden');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Enviar mensaje';
+    }
+  });
+</script>
