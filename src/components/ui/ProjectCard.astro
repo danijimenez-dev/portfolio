@@ -1,0 +1,306 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  problem: string;
+  solution: string;
+  techStack: string[];
+  status: 'completed' | 'coming-soon';
+  grade?: string;
+  liveUrl?: string;
+  repoUrl?: string;
+}
+
+const {
+  title,
+  description,
+  problem,
+  solution,
+  techStack,
+  status,
+  grade,
+  liveUrl,
+  repoUrl,
+} = Astro.props;
+
+const isCompleted = status === 'completed';
+---
+
+<article class:list={['card', isCompleted ? 'card--completed' : 'card--soon']}>
+
+  <!-- Zona de imagen / placeholder -->
+  <div class="card-image" aria-hidden="true">
+    {!isCompleted && (
+      <span class="image-overlay">En preparación</span>
+    )}
+    {isCompleted && (
+      <span class="image-placeholder">Screenshot pendiente</span>
+    )}
+  </div>
+
+  <!-- Zona de contenido -->
+  <div class="card-body">
+
+    <!-- Fila título + badge nota -->
+    <div class="card-header">
+      <h3 class="card-title">{title}</h3>
+      {grade && (
+        <span class="grade-badge" aria-label={`Nota: ${grade}`}>{grade}</span>
+      )}
+    </div>
+
+    <!-- Descripción -->
+    <p class="card-description">{description}</p>
+
+    {isCompleted && (
+      <>
+        <!-- Bloque mini case study -->
+        {(problem || solution) && (
+          <div class="case-study">
+            {problem && (
+              <div class="case-block">
+                <span class="case-label">Problema</span>
+                <p class="case-text">{problem}</p>
+              </div>
+            )}
+            {solution && (
+              <div class="case-block">
+                <span class="case-label">Solución</span>
+                <p class="case-text">{solution}</p>
+              </div>
+            )}
+          </div>
+        )}
+
+        <!-- Pills de tech stack -->
+        {techStack.length > 0 && (
+          <ul class="tech-stack" aria-label="Tecnologías utilizadas">
+            {techStack.map((tech) => (
+              <li class="tech-pill">{tech}</li>
+            ))}
+          </ul>
+        )}
+
+        <!-- Enlaces -->
+        {(liveUrl || repoUrl) && (
+          <div class="card-links">
+            {liveUrl && (
+              <a
+                href={liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="link-live"
+              >
+                Ver proyecto →
+              </a>
+            )}
+            {repoUrl && (
+              <a
+                href={repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="link-repo"
+              >
+                Código →
+              </a>
+            )}
+          </div>
+        )}
+      </>
+    )}
+
+  </div>
+</article>
+
+<style>
+  /* ── Base ────────────────────────────────────────── */
+  .card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  /* ── Completada ──────────────────────────────────── */
+  .card--completed {
+    background-color: var(--color-card);
+    transition: transform 200ms ease, box-shadow 200ms ease;
+  }
+
+  .card--completed:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  }
+
+  /* ── Próximamente ────────────────────────────────── */
+  .card--soon {
+    background-color: var(--color-card);
+    opacity: 0.7;
+  }
+
+  /* ── Zona de imagen ──────────────────────────────── */
+  .card-image {
+    position: relative;
+    height: 200px;
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-accent) 10%, var(--color-bg)),
+      color-mix(in srgb, var(--color-accent) 18%, var(--color-card))
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .card--soon .card-image {
+    opacity: 0.4;
+  }
+
+  .image-placeholder {
+    font-size: 0.85rem;
+    color: color-mix(in srgb, var(--color-text) 30%, transparent);
+  }
+
+  .image-overlay {
+    font-size: 1rem;
+    font-weight: 600;
+    color: color-mix(in srgb, var(--color-text) 50%, transparent);
+  }
+
+  /* ── Cuerpo de contenido ─────────────────────────── */
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1.5rem;
+  }
+
+  /* ── Fila título + badge ─────────────────────────── */
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .card-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .grade-badge {
+    flex-shrink: 0;
+    background-color: color-mix(in srgb, var(--color-accent) 15%, transparent);
+    color: var(--color-accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  /* ── Descripción ─────────────────────────────────── */
+  .card-description {
+    margin: 0.75rem 0 0 0;
+    font-size: 0.9rem;
+    color: color-mix(in srgb, var(--color-text) 75%, transparent);
+    line-height: 1.6;
+  }
+
+  /* ── Mini case study ─────────────────────────────── */
+  .case-study {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .case-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .case-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+  }
+
+  .case-text {
+    font-size: 0.85rem;
+    color: color-mix(in srgb, var(--color-text) 70%, transparent);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* ── Tech stack ──────────────────────────────────── */
+  .tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 1.25rem 0 0 0;
+    padding: 0;
+  }
+
+  .tech-pill {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+  }
+
+  /* ── Enlaces ─────────────────────────────────────── */
+  .card-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+    padding-top: 1.25rem;
+  }
+
+  .link-live,
+  .link-repo {
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+
+  .link-live {
+    color: var(--color-accent);
+  }
+
+  .link-live:hover {
+    text-decoration: underline;
+  }
+
+  .link-live:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .link-repo {
+    color: color-mix(in srgb, var(--color-text) 60%, transparent);
+  }
+
+  .link-repo:hover {
+    color: var(--color-accent);
+  }
+
+  .link-repo:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+</style>

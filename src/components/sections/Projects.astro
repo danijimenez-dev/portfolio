@@ -1,0 +1,119 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectCard from '../ui/ProjectCard.astro';
+
+const allProjects = await getCollection('projects');
+
+const projects = allProjects
+  .filter((p) => p.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<section id="proyectos" class="projects-section">
+  <div class="projects-inner">
+
+    <!-- Encabezado de sección -->
+    <header class="projects-header">
+      <p class="eyebrow">Proyectos</p>
+      <h2 class="section-title">Lo que he construido.</h2>
+      <p class="section-subtitle">
+        Una selección de proyectos técnicos y aplicados. Cada uno con un
+        problema concreto y una solución construida desde cero.
+      </p>
+    </header>
+
+    <!-- Grid de tarjetas -->
+    <div class="projects-grid" role="list">
+      {projects.map((project) => (
+        <div role="listitem">
+          <ProjectCard
+            title={project.data.title}
+            description={project.data.description}
+            problem={project.data.problem}
+            solution={project.data.solution}
+            techStack={project.data.techStack}
+            status={project.data.status}
+            grade={project.data.grade}
+            liveUrl={project.data.liveUrl}
+            repoUrl={project.data.repoUrl}
+          />
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .projects-section {
+    padding: 5rem 1.5rem;
+    background-color: var(--color-bg);
+  }
+
+  @media (max-width: 640px) {
+    .projects-section {
+      padding: 4rem 1.25rem;
+    }
+  }
+
+  .projects-inner {
+    max-width: 72rem;
+    margin-inline: auto;
+  }
+
+  /* ── Encabezado ──────────────────────────────────── */
+  .projects-header {
+    margin-bottom: 3rem;
+  }
+
+  .eyebrow {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
+    margin: 0 0 0.75rem 0;
+  }
+
+  .section-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+  }
+
+  .section-subtitle {
+    max-width: 600px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: color-mix(in srgb, var(--color-text) 75%, transparent);
+    margin: 0;
+  }
+
+  /* ── Grid ────────────────────────────────────────── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .projects-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* El div role="listitem" ocupa el 100% para que la tarjeta
+     pueda usar height: 100% y las filas queden equilibradas */
+  .projects-grid > [role="listitem"] {
+    display: flex;
+    flex-direction: column;
+  }
+</style>
