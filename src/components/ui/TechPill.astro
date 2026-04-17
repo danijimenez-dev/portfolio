@@ -1,0 +1,24 @@
+---
+interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+---
+
+<span class="tech-pill">{name}</span>
+
+<style>
+  .tech-pill {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--color-card);
+    color: var(--color-text);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    white-space: nowrap;
+  }
+</style>

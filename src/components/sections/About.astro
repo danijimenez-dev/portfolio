@@ -1,0 +1,170 @@
+---
+import TechPill from '../ui/TechPill.astro';
+
+const techGroups = [
+  {
+    label: 'Lenguajes',
+    techs: ['C', 'C++', 'Java', 'JavaScript', 'TypeScript', 'Python'],
+  },
+  {
+    label: 'Web',
+    techs: ['HTML', 'CSS', 'Astro', 'Node.js'],
+  },
+  {
+    label: 'IA / ML',
+    techs: ['TensorFlow', 'PyTorch', 'scikit-learn', 'NumPy', 'Pandas'],
+  },
+];
+---
+
+<section id="sobre-mi" class="about-section">
+  <div class="about-inner">
+
+    <!-- Encabezado de sección -->
+    <header class="about-header">
+      <p class="eyebrow">Sobre mí</p>
+      <h2 class="section-title">Hola, soy Daniel.</h2>
+    </header>
+
+    <!-- Layout dos columnas -->
+    <div class="about-grid">
+
+      <!-- Columna principal: texto -->
+      <div class="about-text">
+        <p>
+          Soy ingeniero informático por la Universidad Complutense de Madrid,
+          especializado en Inteligencia Artificial y Machine Learning. Ahora
+          combino esa formación con el desarrollo de webs para negocios locales
+          aquí en Segovia.
+        </p>
+        <p>
+          Me gusta construir cosas que funcionan bien y duran. Sin florituras
+          innecesarias, sin plantillas compradas, sin humo. Tu negocio es único
+          y tu web también debería serlo.
+        </p>
+        <p>
+          Trato directo, sin intermediarios ni agencias. Cuando trabajas
+          conmigo, hablas conmigo. Esto significa decisiones rápidas, precios
+          claros y responsabilidad real.
+        </p>
+      </div>
+
+      <!-- Columna lateral: tecnologías -->
+      <aside class="about-tech" aria-label="Tecnologías que manejo">
+        <h3 class="tech-heading">Tecnologías</h3>
+
+        {techGroups.map((group) => (
+          <div class="tech-group">
+            <p class="group-label">{group.label}</p>
+            <div class="group-pills">
+              {group.techs.map((tech) => (
+                <TechPill name={tech} />
+              ))}
+            </div>
+          </div>
+        ))}
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-section {
+    padding: 5rem 1.5rem;
+    background-color: var(--color-bg);
+  }
+
+  @media (max-width: 640px) {
+    .about-section {
+      padding: 4rem 1.25rem;
+    }
+  }
+
+  .about-inner {
+    max-width: 72rem;
+    margin-inline: auto;
+  }
+
+  /* ── Encabezado ──────────────────────────────────── */
+  .about-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .eyebrow {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
+    margin: 0 0 0.75rem 0;
+  }
+
+  .section-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  /* ── Grid dos columnas ───────────────────────────── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .about-grid {
+      grid-template-columns: 3fr 2fr;
+      gap: 3rem 3rem;
+      align-items: start;
+    }
+  }
+
+  /* ── Columna de texto ────────────────────────────── */
+  .about-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .about-text p {
+    font-size: 1rem;
+    color: var(--color-text);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ── Columna lateral ─────────────────────────────── */
+  .tech-heading {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 1.5rem 0;
+  }
+
+  .tech-group {
+    margin-bottom: 1.25rem;
+  }
+
+  .tech-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .group-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: color-mix(in srgb, var(--color-text) 50%, transparent);
+    margin: 0 0 0.5rem 0;
+  }
+
+  .group-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+</style>
