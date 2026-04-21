@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import heroBg from '../../assets/hero-bg.jpg';
+import heroBg from '../../assets/hero-bg-edit.png';
 ---
 
 <section id="hero" class="hero-section">
@@ -72,6 +72,8 @@ import heroBg from '../../assets/hero-bg.jpg';
     height: 100%;
     object-fit: cover;
     object-position: center;
+    filter: brightness(1.4);
+    filter: contrast(0.8);
   }
 
   /* Overlay oscuro: capa 1 */
@@ -81,9 +83,9 @@ import heroBg from '../../assets/hero-bg.jpg';
     z-index: 1;
     background: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.5) 0%,
-      rgba(0, 0, 0, 0.6) 50%,
-      rgba(0, 0, 0, 0.7) 100%
+      rgba(0, 0, 0, 0.25) 0%,
+      rgba(0, 0, 0, 0.35) 50%,
+      rgba(0, 0, 0, 0.45) 100%
     );
   }
 
@@ -100,7 +102,7 @@ import heroBg from '../../assets/hero-bg.jpg';
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 90vh;
+    min-height: 90dvh;
     text-align: center;
     padding: 7rem 1.5rem 4rem;
     width: 100%;
