@@ -21,7 +21,12 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Compensación del header sticky en navegación por anclas */
+body {
+  /* top (0.75rem) + altura header (4.5rem) + respiro = 5.5rem */
+  padding-top: 5.5rem;
+}
+
+/* Compensación del header fixed+flotante en navegación por anclas */
 section[id] {
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 6rem;
 }
